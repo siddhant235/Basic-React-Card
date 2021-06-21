@@ -1,15 +1,18 @@
 import React from 'react'
 import Card from '../UI/Card'
 import classes from './UsersList.module.css'
+import {useSelector} from 'react-redux'
+
 const UsersList = (props) => {
+    const userList=useSelector((state)=>state.user)
     return (
-        <Card className={classes.root}>
+      
         <ul >
             {
-                props.users.map(user=><li key={user.id}>{user.name} {user.age} years old</li>)
+                userList.userList.map(user=>  <Card className={classes.root}><li key={user.id}>{user.name} {user.age} years old</li>  </Card>)
             }
         </ul>
-        </Card>
+      
     )
 }
 
