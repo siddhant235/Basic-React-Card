@@ -6,4 +6,22 @@ export const addUser=(data)=>{
        userData:data
     }
 }
+export const deleteData=(id)=>{
+    return{
+    type:actionTypes.DELETE_DATA,
+    id:id
+    }
+}
+export const clearData=()=>{
+    return{
+        type:actionTypes.CLEAR_ALL
+    }
+}
 
+export const editData=(id,data)=>{
+    return{
+        type:actionTypes.EDIT_DATA,
+        id:id,
+        data:data
+    }
+}

@@ -4,6 +4,8 @@ import Button from "../UI/Button";
 import classes from "./AddUser.module.css";
 import ErrorModal from "../UI/ErrorModal";
 import {useDispatch} from 'react-redux'
+import uuid from 'react-uuid'
+import ClearAllIcon from '@material-ui/icons/ClearAll';
 import * as AddUserAction from '../../store/actions/addUserAction' 
 const AddUser = (props) => {
   const dispatch=useDispatch();
@@ -27,13 +29,16 @@ const AddUser = (props) => {
         message:'Please enter a valid age greater than 0.'
     })
     }
-    dispatch(AddUserAction.addUser({name:enteredName,age:enteredUserAge}))
+    dispatch(AddUserAction.addUser({id:uuid(),name:enteredName,age:enteredUserAge}))
   nameInputRef.current.value=''
   myAgeRef.current.value=''
   };
       
   const errorHandler=()=>{
     setError(null)
+  }
+  const clearAllHandle=()=>{
+    dispatch(AddUserAction.clearData())
   }
   return (
     <>
@@ -54,7 +59,9 @@ const AddUser = (props) => {
             ref={myAgeRef}
           />
           <Button type="submit">Add User</Button>
+          <span style={{display :'flex',float:'right' ,padding:"10px",color:"salmon"}} onClick={clearAllHandle}><strong>clear All</strong> <ClearAllIcon/></span>
         </form>
+     
       </Card>
     </>
   );

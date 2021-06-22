@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import thunk from 'redux-thunk'
 import {Provider} from 'react-redux'
-import {persistStore,persistReducer,createMigrate} from 'redux-persist';
+import {persistStore,persistReducer} from 'redux-persist';
 import { createStore, applyMiddleware, compose, combineReducers } from "redux";
 import AddUserReducer from './store/reducers/AdUserReducer'
 import storage from 'redux-persist/lib/storage'
@@ -24,11 +24,11 @@ const store=createStore(pReducer,composeEnhancers(applyMiddleware(thunk)))
 const persistor=persistStore(store)
 export {persistor,store}
 ReactDOM.render(
-  <React.StrictMode>
+
     <Provider store={store}>
     <App />
     </Provider>
-  </React.StrictMode>,
+,
   document.getElementById('root')
 );
 
